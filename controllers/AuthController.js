@@ -14,7 +14,8 @@ const Signup = async (req, res, next) => {
         res.cookie("token", token, {
             withCredentials: true,
             httpOnly: false,
-            sameSite: "none"
+            sameSite: "none",
+            secure: true
         });
         res
             .status(201)
@@ -43,7 +44,8 @@ const Login = async (req, res, next) => {
         res.cookie("token", token, {
             withCredentials: true,
             httpOnly: false,
-            sameSite: "none"
+            sameSite: "none",
+            secure: true
         });
         res.status(201).json({ message: "User logged in successfully", success: true });
         next()
