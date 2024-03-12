@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 import attendance from "./routes/attendance.js";
 import user from "./routes/user.js";
 
-const { ATLAS_URI, PORT } = process.env;
+const { ATLAS_URI, PORT, ORIGIN } = process.env;
 const app = express();
 
 mongoose
@@ -16,7 +16,7 @@ mongoose
 
 app.use(
     cors({
-        origin: ["*"],
+        origin: ORIGIN,
         methods: ["GET", "POST", "PUT", "DELETE"],
         credentials: true,
     })
