@@ -2,7 +2,7 @@ import Attendance from "../models/AttendanceModel.js";
 
 const GetList = async (req, res, next) => {
     try {
-        let results = await Attendance.find({userId: req.userData.id}, { sort: { _id: -1 }}).select({ date: 1, time: 1 });
+        let results = await Attendance.find({userId: req.userData.id}, {}, { sort: { _id: -1 }}).select({ date: 1, time: 1 });
 
         console.log(results)
 
@@ -42,7 +42,7 @@ const GetList = async (req, res, next) => {
 
 const PunchInOut = async (req, res, next) => {
     try {
-        let latestDocument = await Attendance.findOne({userId: req.userData.id}, { sort: { _id: -1 }, limit: 1 }).select({ date: 1, time: 1, userId: 1 });
+        let latestDocument = await Attendance.findOne({userId: req.userData.id}, {}, { sort: { _id: -1 }, limit: 1 }).select({ date: 1, time: 1, userId: 1 });
 
         const dateObj = new Date();
         const timezoneOffset = dateObj.getTimezoneOffset();
