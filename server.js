@@ -22,6 +22,15 @@ app.use(
     })
 );
 
+app.use((req, res, next) => {
+    if (req.url === '/') {
+        res.header("Cache-Control", "no-cache, no-store, must-revalidate");
+        res.header("Pragma", "no-cache");
+        res.header("Expires", 0);
+    }
+    next();
+});
+
 app.use(express.json());
 app.use(cookieParser());
 
